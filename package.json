@@ -1,0 +1,24 @@
+{
+  "name": "folders-gulp",
+  "version": "0.0.1",
+  "description": "Compatiblity layer for folders to work with gulp",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/foldersjs/folders-gulp.git"
+  },
+  "author": "",
+  "license": "Apache 2.0/MIT Dual Licensed",
+  "bugs": {
+    "url": "https://github.com/foldersjs/folders-gulp/issues"
+  },
+  "homepage": "https://github.com/foldersjs/folders-gulp",
+  "dependencies": {
+	"vinyl": "^0.4.0",
+  },
+  "devDependencies": {
+	"gulp": "~3.8.10",
+	"gulp-jshint": "~1.9.0",
+	"gulp-istanbul": "~0.5.0",
+	"gulp-mocha": "~2.0.0"
+  }
+}
