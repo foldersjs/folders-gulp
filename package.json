@@ -13,9 +13,10 @@
   },
   "homepage": "https://github.com/foldersjs/folders-gulp",
   "dependencies": {
-	"vinyl": "^0.4.0",
+	"vinyl": "^0.4.0"
   },
   "devDependencies": {
+	"folders":"git://github.com/foldersjs/folders.git#master",
 	"gulp": "~3.8.10",
 	"gulp-jshint": "~1.9.0",
 	"gulp-istanbul": "~0.5.0",
