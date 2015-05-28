@@ -98,3 +98,72 @@ function(data) {
 	}
 });
 
+var stream = require('stream');
+var util = require('util');
+
+// Gulp pipe to fio
+var Write = function(opt) {
+	opt = opt || {};
+	opt.objectMode = true;
+	stream.Writable.call(this, opt);
+}; util.inherits(Write, stream.Writable);
+
+Write.prototype._write = function(chunk, encoding, callback) {
+	console.log("chunk", chunk);
+	return;
+	var v = new cat();
+	console.log("fio", v.from(chunk));
+
+	v = new ls();
+	console.log("fls", v.from(chunk));
+
+	callback();
+	return true;
+}
+
+var gulp = require('gulp')
+var write = new Write();
+gulp.src('tmp/*.txt', {
+	read: false,
+	buffer: false
+}).pipe(write)
+
+// Fio pipe to gulp
+var Read = function(opt) {
+	opt = opt || {};
+	opt.objectMode = true;
+	stream.Readable.call(this, opt);
+	this.listing = false;
+}; util.inherits(Read, stream.Readable);
+
+Read.prototype._read = function(size) {
+	var self = this;
+	if(this.listing == false) {
+		if(0)
+		(new (folders.stub())).cat({data: { streamId: "Test" }, "shareId": "Test" },
+		function(data) {
+			var v = new cat();
+			self.push(v.to(data));
+			self.waiting = false;
+		});
+
+		(new (folders.stub())).ls(".",
+		function(data) {
+			var v = new ls();
+			for(var i = 0; i < data.length; i++) {
+				self.push(v.to(data[i]));
+			}
+			self.waiting = false;
+		});
+		this.listing = true;
+		this.waiting = true;
+	}
+	else {
+		if(this.waiting != true)
+		this.push();
+	}
+}
+
+var read = new Read();
+read.pipe(write);
+
