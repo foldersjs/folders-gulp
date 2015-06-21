@@ -11,6 +11,7 @@
   "bugs": {
     "url": "https://github.com/foldersjs/folders-gulp/issues"
   },
+  "main": "./src/folders-gulp",
   "homepage": "https://github.com/foldersjs/folders-gulp",
   "dependencies": {
 	"vinyl": "^0.4.0"
