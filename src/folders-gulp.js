@@ -9,7 +9,7 @@ var LsTo = require('./helpers/LsTo');
 var LsFrom = require('./helpers/LsFrom');
 var CatTo = require('./helpers/CatTo');
 var CatFrom = require('./helpers/CatFrom');
-
+var WriteFrom = require('./helpers/WriteFrom');
 
 
 var FoldersGulp = function (provider, options) {
@@ -62,3 +62,17 @@ FoldersGulp.prototype.catFrom = function () {
     return new CatFrom(self.options);
 
 };
+
+FoldersGulp.prototype.writeFrom = function (path) {
+
+    var self = this;
+    return new WriteFrom(path, self.provider, self.options);
+
+}
+
+FoldersGulp.prototype.writeTo = function (path) {
+
+    var self = this;
+    return new WriteTo(path, self.options);
+
+}
