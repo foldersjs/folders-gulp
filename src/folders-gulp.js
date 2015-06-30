@@ -12,11 +12,12 @@ var CatFrom = require('./helpers/CatFrom');
 var WriteFrom = require('./helpers/WriteFrom');
 
 
-var FoldersGulp = function (provider, options) {
+var FoldersGulp = function (prefix, options) {
 
     var self = this;
-    self.options = options;
-    self.provider = provider || 'ftp';
+	self.prefix = prefix ;
+    self.options = options || {} ;
+    self.provider = options.provider || 'ftp';
 
 };
 
@@ -63,16 +64,25 @@ FoldersGulp.prototype.catFrom = function () {
 
 };
 
-FoldersGulp.prototype.writeFrom = function (path) {
+/*
+ *  This method writes to a file specified by
+ * 'path' and data source from gulp plugin 
+ *
+ */
+FoldersGulp.prototype.writeFrom = function (path,cb) {
 
     var self = this;
-    return new WriteFrom(path, self.provider, self.options);
+    return new WriteFrom(path, self.provider, self.options,cb);
 
-}
+};
 
+/*
+ *
+ *
+ */
 FoldersGulp.prototype.writeTo = function (path) {
 
     var self = this;
     return new WriteTo(path, self.options);
 
-}
+};

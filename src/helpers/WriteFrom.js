@@ -9,8 +9,9 @@ var util = require('util');
 var gulp = require('gulp');
 
 
-var WriteFrom = function (path, provider, options) {
+var WriteFrom = function (path, provider, options,cb) {
     this.path = path;
+	this.cb = cb || function(err,result){console.log(result)};
     options = options || {};
     options.objectMode = true;
     provider = provider || 'ftp';
@@ -35,10 +36,7 @@ WriteFrom.prototype._write = function (chunk, encoding, callback) {
     output = vinylToWrite(chunk);
     path = self.path;
     data = output.data;
-    self.provider.write(path, data, function (result) {
-
-        console.log(result);
-    })
+    self.provider.write(path, data, self.cb)
     callback();
 };
 
